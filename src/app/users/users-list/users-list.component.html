@@ -1,0 +1,38 @@
+<!-- Users table -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="title">Users Table</h4>
+        <p class="category">Please select a user to edit!</p>
+      </div>
+      <div class="card-content table-responsive">
+        <table
+          class="table table-hover"
+          *ngIf="((iUsers && iUsers.length) > 0) && !(loading | async)">
+          <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Birth Date</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            *ngFor="let user of iUsers"
+            style="cursor: pointer;"
+            (click)="setSelectedUser(user)">
+            <td scope="row">{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.birthDate | date: 'd/M/y' }}</td>
+            <td><button class="btn btn-primary" style="cursor: pointer;">Edit User</button></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <loading-spinner *ngIf="loading | async"></loading-spinner>
+  </div>
+</div><!-- End of table -->
